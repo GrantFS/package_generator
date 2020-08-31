@@ -2,8 +2,6 @@
 
 namespace Loopy\PackageGenerator\Commands;
 
-use App\Console\Commands\PackageGenerator\PackageGenerator;
-
 class PackageFoldersCommand extends PackageGenerator
 {
     protected $signature = 'package:folders {name}';
