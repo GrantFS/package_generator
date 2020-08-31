@@ -28,7 +28,7 @@ In config/app.php under providers
 
 ```
 
-namespace\package_name\PackageNameServiceProvider::class
+Loopy\PackageGenerator\PackageGeneratorServiceProvider::class
 
 ```
 
