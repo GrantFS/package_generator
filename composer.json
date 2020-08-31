@@ -1,0 +1,16 @@
+{
+    "name": "loopy/package_generator",
+    "description": "Package Generator - Package Generation for Laravel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [{
+        "name": "Grant Pearce",
+        "email": "drloopyuk1@hotmail.com"
+    }],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "^5.3.*"
+    },
+    "require-dev": {}
+}
