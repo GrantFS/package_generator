@@ -32,6 +32,27 @@ namespace\package_name\PackageNameServiceProvider::class
 
 ```
 
+In App\Console\Kernel
+
+```
+
+ protected $commands = [
+        'Loopy\PackageGenerator\Commands\PackageServiceProviderCommand',
+        'Loopy\PackageGenerator\Commands\PackageClassCommand',
+        'Loopy\PackageGenerator\Commands\PackageConfigCommand',
+        'Loopy\PackageGenerator\Commands\PackageScssVariablesCommand',
+        'Loopy\PackageGenerator\Commands\PackageScssCommand',
+        'Loopy\PackageGenerator\Commands\PackageComposerCommand',
+        'Loopy\PackageGenerator\Commands\PackageReadmeCommand',
+        'Loopy\PackageGenerator\Commands\PackageGitignoreCommand',
+        'Loopy\PackageGenerator\Commands\PackageControllerCommand',
+        'Loopy\PackageGenerator\Commands\PackageViewComposerCommand',
+        'Loopy\PackageGenerator\Commands\PackageFoldersCommand',
+        'Loopy\PackageGenerator\Commands\NewPackageCommand'
+    ];
+
+```
+
 
 ## Create the package
 

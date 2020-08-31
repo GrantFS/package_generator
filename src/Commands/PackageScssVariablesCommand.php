@@ -1,6 +1,6 @@
 <?php
 
-namespace Loopy\PackageGenerator\Commands
+namespace Loopy\PackageGenerator\Commands;
 
 use App\Console\Commands\PackageGenerator\PackageGenerator;
 use Symfony\Component\Console\Input\InputArgument;
