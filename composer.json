@@ -12,5 +12,10 @@
         "php": ">=7.0.0",
         "laravel/framework": "^5.3.*"
     },
-    "require-dev": {}
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Loopy\\PackageGenerator\\": "src"
+        }
+    }
 }
