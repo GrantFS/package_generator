@@ -81,7 +81,7 @@ abstract class PackageGenerator extends GeneratorCommand
         $this->base_class_name = ucwords($path[$last]);
         unset($path[$last]);
         $this->directory = strtolower(implode('/', $path) . '/' . $this->package_name);
-        $this->root_path = config('package_generator.default_root_directory', str_replace('/laravel_test_environment', '', base_path()));
+        $this->root_path = config('package_generator.default_root_directory', base_path() . '/Packages');
     }
 
     protected function makeDirectory($path)
