@@ -61,3 +61,15 @@ In App\Console\Kernel
   php artisan make:package [namespace/package_name]
 
 ```
+
+## Config
+
+Default Root Directory - Change where the packages are created.  The default is the top level of the project
+
+```
+
+[
+  'default_root_directory' => base_path() . '/Packages'
+]
+
+```
