@@ -6,7 +6,7 @@ A quick and simple way to create a new Laravel package, complete with folder str
 
 Add the repository to the package.json file
 
-```
+```yml
 
 "repositories": [{
     "url": "https://github.com/GrantFS/package_generator.git",
@@ -17,7 +17,7 @@ Add the repository to the package.json file
 
 Require in composer
 
-```
+```bash
 
  composer require loopy/package_generator
 
@@ -26,15 +26,16 @@ Require in composer
 
 In config/app.php under providers
 
-```
-
-Loopy\PackageGenerator\PackageGeneratorServiceProvider::class
+```php
+'providers' => [
+    Loopy\PackageGenerator\PackageGeneratorServiceProvider::class
+]
 
 ```
 
 In App\Console\Kernel
 
-```
+```php
 
  protected $commands = [
         'Loopy\PackageGenerator\Commands\PackageServiceProviderCommand',
@@ -53,6 +54,13 @@ In App\Console\Kernel
 
 ```
 
+Ensure the assets are published
+
+```bash
+
+  pa vendor:publish
+
+```
 
 ## Create the package
 
