@@ -3,6 +3,7 @@
 namespace Loopy\PackageGenerator\Commands;
 
 use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Support\Str;
 
 class PackageConfigCommand extends PackageGenerator
 {
@@ -23,6 +24,6 @@ class PackageConfigCommand extends PackageGenerator
 
     protected function getPath($name)
     {
-        return $this->root_path . '/' . $this->directory . '/src/Config/' . snake_case($this->base_class_name) . '.php';
+        return $this->root_path . '/' . $this->directory . '/src/Config/' . Str::snake($this->base_class_name) . '.php';
     }
 }

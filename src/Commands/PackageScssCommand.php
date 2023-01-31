@@ -3,6 +3,7 @@
 namespace Loopy\PackageGenerator\Commands;
 
 use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Support\Str;
 
 class PackageScssCommand extends PackageGenerator
 {
@@ -23,6 +24,6 @@ class PackageScssCommand extends PackageGenerator
 
     protected function getPath($name)
     {
-        return $this->root_path . '/' . $this->directory . '/resources/' . snake_case($this->base_class_name) . '.scss';
+        return $this->root_path . '/' . $this->directory . '/resources/' . Str::snake($this->base_class_name) . '.scss';
     }
 }

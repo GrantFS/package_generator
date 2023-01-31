@@ -4,6 +4,7 @@ namespace Loopy\PackageGenerator\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Support\Str;
 
 abstract class PackageGenerator extends GeneratorCommand
 {
@@ -77,7 +78,7 @@ abstract class PackageGenerator extends GeneratorCommand
         $name = str_replace('\\', '/', $name);
         $path = explode('/', $name);
         $last = count($path) - 1;
-        $this->package_name = snake_case($path[$last]);
+        $this->package_name = Str::snake($path[$last]);
         $this->base_class_name = ucwords($path[$last]);
         unset($path[$last]);
         $this->directory = strtolower(implode('/', $path) . '/' . $this->package_name);
