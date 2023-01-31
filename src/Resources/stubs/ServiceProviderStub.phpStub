@@ -1,0 +1,68 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Support\ServiceProvider;
+use View;
+use DummyNamespace\Services\DummyClass;
+
+class DummyClassServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $laravel_version = $this->getLaravelVersion();
+        if ($laravel_version == 4) {
+            $this->package('DummyNamespace');
+            View::addNamespace('SNAKENAME', __DIR__.'/views');
+            include __DIR__.'/routes.php';
+        } elseif ($laravel_version == 5) {
+            $this->loadViewsFrom(__DIR__ . '/Views', 'SNAKENAME');
+            $this->loadRoutesFrom(__DIR__ . '/routes.php');
+
+            $this->publishes([__DIR__ . '/Config/SNAKENAME.php' => config_path('SNAKENAME.php')], 'config');
+            $this->publishes([__DIR__ . '/Database/Migrations' =>  database_path('migrations')]);
+            $this->publishes([__DIR__ . '/Views/publish' => app_path('Vendor/DummyClass')]);
+            $this->publishes([__DIR__ . '/Public' => public_path('vendor/loopy/SNAKENAME')], 'public');
+            $this->publishes([__DIR__ . '/Controllers' => app_path('Http/Controllers/DummyClass')]);
+
+            view()->composer('SNAKENAME::layouts._partials.header', '\Loopy\DummyClass\ViewComposers\DummyClassComposer');
+        }
+
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('SNAKENAME', function () {
+            return new DummyClass;
+        });
+    }
+
+
+
+    private function getLaravelVersion()
+    {
+        $version = $this->app['config']->get('SNAKENAME.laravel', '4.*');
+        $version = explode('.', $version);
+        switch ($version[0]) {
+            case '4':
+                return '4';
+                break;
+            case '5':
+                return '5';
+                break;
+            default:
+                return '4';
+                break;
+        }
+    }
+}

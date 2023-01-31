@@ -14,6 +14,7 @@ class PackageGeneratorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/Config/package_generator.php' => config_path('package_generator.php')], 'config');
+        $this->publishes([__DIR__ . '/Resources/stubs' => base_path('/resources/assets/stubs') ]);
     }
 
     /**

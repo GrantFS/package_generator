@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace\ViewComposers;
+
+use Illuminate\Contracts\View\View;
+
+class DummyClassComposer
+{
+    /**
+     * Bind data to the view.
+     *
+     * @param View $view
+     */
+    public function compose(View $view)
+    {
+        $data = [];
+        $view->with('SNAKENAME', $data);
+    }
+}
+

@@ -1,0 +1,7 @@
+<?php
+Route::group(['prefix' => 'SNAKENAME', 'middleware' => 'web'], function () {
+    Route::get('/', [
+        'as' => 'SNAKENAME',
+        'uses' => 'App\Http\Controllers\DummyClass\DummyClassController@index',
+    ]);
+});
