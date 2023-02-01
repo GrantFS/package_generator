@@ -1,0 +1,28 @@
+{
+    "name": "package_generator",
+    "version": "2.0.0",
+    "description": "A package generator tool for laravel ",
+    "main": "index.js",
+    "scripts": {
+        "release": "standard-version",
+        "release:first": "npm run release -- --first-release",
+        "changelog": "echo \"$(cat CHANGELOG.md)\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GrantFS/package_generator.git"
+    },
+    "keywords": [
+        "Laravel",
+        "Package"
+    ],
+    "author": "Grant Pearce <grantpearcedev@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/GrantFS/package_generator/issues"
+    },
+    "homepage": "https://github.com/GrantFS/package_generator#readme",
+    "devDependencies": {
+        "standard-version": "^9.5.0"
+    }
+}
