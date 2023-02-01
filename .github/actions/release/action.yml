@@ -31,13 +31,15 @@ runs:
         result-encoding: string
         script: return require('./package.json').version
 
+    - name: Generate Release Body
+      run: npx extract-changelog-release > RELEASE_BODY.md
+
     - name: create release
       id: create-release
       uses: ncipollo/release-action@v1
-      env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
       with:
+        token: ${{ inputs.github-token }}
         tag: ${{ steps.package-version.outputs.result }}
         name: ${{ steps.package-version.outputs.result }}
-        bodyFile: "./changelog.md"
+        bodyFile: "RELEASE_BODY.md"
         prerelease: ${{ inputs.prerelease }}
