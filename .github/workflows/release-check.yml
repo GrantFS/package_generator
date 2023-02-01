@@ -27,7 +27,7 @@ jobs:
       - name: Check for tag
         id: tagged
         run: git show-ref --tags --verify --quiet -- "refs/tags/${{ steps.package-version.outputs.result }}" && echo "name=tagged::0" >>$GITHUB_OUTPUT || echo "name=tagged::1" >>$GITHUB_OUTPUT
-
+        # run: git show-ref --tags --verify --quiet -- "refs/tags/${{ steps.package-version.outputs.result }}" && echo "::set-output name=tagged::0" || echo "::set-output name=tagged::1"
 
       - name: Already has this tag
         if: steps.tagged.outputs.tagged == 0
