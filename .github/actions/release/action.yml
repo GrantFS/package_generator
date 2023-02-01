@@ -31,12 +31,6 @@ runs:
         result-encoding: string
         script: return require('./package.json').version
 
-    - name: Get Change Log
-      shell: bash
-      id: changelog
-      run: |
-        echo "log=$(npm run changelog)" >>$GITHUB_OUTPUT
-
     - name: create release
       id: create-release
       uses: ncipollo/release-action@v1
@@ -45,5 +39,5 @@ runs:
       with:
         tag: ${{ steps.package-version.outputs.result }}
         name: ${{ steps.package-version.outputs.result }}
-        body: ${{ steps.changelog.outputs.log }}
+        bodyFile: "changelog.md"
         prerelease: ${{ inputs.prerelease }}
