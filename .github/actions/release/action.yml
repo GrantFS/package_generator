@@ -35,7 +35,7 @@ runs:
       shell: bash
       id: changelog
       run: |
-        echo "name=log::$(npm run changelog)" >>$GITHUB_OUTPUT
+        echo "log=$(npm run changelog)" >>$GITHUB_OUTPUT
 
     - name: create release
       id: create-release
