@@ -1,6 +1,6 @@
 {
     "name": "package_generator",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "description": "A package generator tool for laravel ",
     "main": "index.js",
     "scripts": {
@@ -24,5 +24,8 @@
     "homepage": "https://github.com/GrantFS/package_generator#readme",
     "devDependencies": {
         "standard-version": "^9.5.0"
+    },
+    "dependencies": {
+        "extract-changelog-release": "^1.0.2"
     }
 }
