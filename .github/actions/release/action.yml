@@ -35,15 +35,15 @@ runs:
       shell: bash
       id: changelog
       run: |
-        echo "::set-output name=log::$(npm run changelog)"
+        echo "name=log::$(npm run changelog)" >>$GITHUB_OUTPUT
 
     - name: create release
       id: create-release
-      uses: actions/create-release@v1
+      uses: ncipollo/release-action@v1
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
       with:
-        tag_name: ${{ steps.package-version.outputs.result }}
-        release_name: ${{ steps.package-version.outputs.result }}
+        tag: ${{ steps.package-version.outputs.result }}
+        name: ${{ steps.package-version.outputs.result }}
         body: ${{ steps.changelog.outputs.log }}
         prerelease: ${{ inputs.prerelease }}
