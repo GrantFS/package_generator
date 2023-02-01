@@ -1,0 +1,44 @@
+name: Release Check
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Get Version
+        id: package-version
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: return require('./package.json').version
+
+      - name: Check for tag
+        id: tagged
+        run: git show-ref --tags --verify --quiet -- "refs/tags/${{ steps.package-version.outputs.result }}" && echo "::set-output name=tagged::0" || echo "::set-output name=tagged::1"
+
+      - name: Already has this tag
+        if: steps.tagged.outputs.tagged == 0
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Failed to create a Release",
+              body: "The version number is currently the same as the last merge, so no code has been deployed.  Please trigger a full deployment with the correct version.",
+              labels: ['${{ steps.package-version.outputs.result }}', 'Failed Release', 'Test/Production']
+            core.setFailed('Release FAILED - Release Required')
+      # slack here
