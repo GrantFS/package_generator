@@ -32,6 +32,7 @@ runs:
         script: return require('./package.json').version
 
     - name: Generate Release Body
+      shell: bash
       run: npx extract-changelog-release > RELEASE_BODY.md
 
     - name: create release
