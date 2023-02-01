@@ -39,5 +39,5 @@ runs:
       with:
         tag: ${{ steps.package-version.outputs.result }}
         name: ${{ steps.package-version.outputs.result }}
-        bodyFile: "changelog.md"
+        bodyFile: "./changelog.md"
         prerelease: ${{ inputs.prerelease }}
