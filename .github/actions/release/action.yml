@@ -1,0 +1,49 @@
+name: Create Release
+description: "Create a Release"
+
+inputs:
+  github-token:
+    description: "Github Token"
+    required: true
+  prerelease:
+    description: "Is this a Pre Release"
+    required: true
+
+outputs:
+  release-id:
+    description: "Release Id"
+    value: ${{ steps.create-release.outputs.id }}
+  package-version:
+    description: "Current Version"
+    value: ${{ steps.package-version.outputs.result }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install Dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Get Version
+      id: package-version
+      uses: actions/github-script@v6
+      with:
+        result-encoding: string
+        script: return require('./package.json').version
+
+    - name: Get Change Log
+      shell: bash
+      id: changelog
+      run: |
+        echo "::set-output name=log::$(npm run changelog)"
+
+    - name: create release
+      id: create-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+      with:
+        tag_name: ${{ steps.package-version.outputs.result }}
+        release_name: ${{ steps.package-version.outputs.result }}
+        body: ${{ steps.changelog.outputs.log }}
+        prerelease: ${{ inputs.prerelease }}
